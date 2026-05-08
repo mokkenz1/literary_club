@@ -47,6 +47,21 @@
             </div>
         </div>
 
+        <h2>📚 Недавно добавленные книги</h2>
+        <div class="row mt-3">
+            {{range .Books}}
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{.Title}}</h5>
+                        <p class="card-text">{{.Author}} ({{.Year}})</p>
+                        <a href="/book/{{.ID}}" class="btn btn-sm btn-outline-primary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            {{end}}
+        </div>
+
         <!-- Секция с последними отзывами (заглушка, позже подключим БД) -->
         <div class="row mt-4">
             <div class="col-12">

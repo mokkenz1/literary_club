@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{.Title}} - Книжный клуб</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">📚 Книжный клуб</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Главная</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/books">Книги</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/gallery">Галерея</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/reviews">Отзывы</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1>📖 Наши книги</h1>
+        <div class="row mt-4">
+            {{range .Books}}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{.Title}}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{.Author}} ({{.Year}})</h6>
+                        <p class="card-text">{{.Description}}</p>
+                        <a href="/book/{{.ID}}" class="btn btn-primary btn-sm">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            {{end}}
+        </div>
+    </div>
+</body>
+</html>
