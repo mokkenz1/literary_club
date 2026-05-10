@@ -585,3 +585,277 @@ footer p {
     font-style: italic;
     line-height: 1.6;
 }
+
+.event-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.event-card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.event-card-header {
+    display: flex;
+    align-items: center;
+    padding: 24px;
+    gap: 16px;
+    position: relative;
+}
+
+.event-date-badge {
+    min-width: 60px;
+    height: 60px;
+    background: var(--accent);
+    color: white;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    line-height: 1.2;
+    flex-shrink: 0;
+}
+
+.event-day {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.event-month {
+    font-size: 12px;
+    text-transform: lowercase;
+}
+
+.event-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.event-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    margin: 0 0 8px 0;
+    color: var(--text-primary);
+}
+
+.event-meta {
+    display: flex;
+    gap: 16px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    flex-wrap: wrap;
+}
+
+.event-arrow {
+    font-size: 20px;
+    color: var(--text-muted);
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.event-card.expanded .event-arrow {
+    transform: rotate(180deg);
+}
+
+.event-card-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    padding: 0 24px;
+}
+
+.event-card.expanded .event-card-body {
+    max-height: 400px;
+    padding: 0 24px 24px 24px;
+}
+
+.event-description {
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    line-height: 1.6;
+}
+
+.event-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.detail-icon {
+    font-size: 16px;
+}
+
+.signup-btn {
+    width: 100%;
+    text-align: center;
+    margin-top: 8px;
+    text-decoration: none;
+}
+
+/* Hero decoration */
+.hero-decoration {
+    font-size: 120px;
+    animation: float 4s ease-in-out infinite;
+    opacity: 0.8;
+}
+
+/* Карточки мероприятий */
+.event-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.event-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.event-card-header {
+    display: flex;
+    align-items: center;
+    padding: 24px;
+    gap: 16px;
+}
+
+.event-date-badge {
+    min-width: 60px;
+    height: 60px;
+    background: var(--accent);
+    color: white;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    line-height: 1.2;
+    flex-shrink: 0;
+}
+
+.event-day {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.event-month {
+    font-size: 12px;
+    text-transform: lowercase;
+}
+
+.event-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.event-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    margin: 0 0 8px 0;
+    color: var(--text-primary);
+}
+
+.event-meta {
+    display: flex;
+    gap: 16px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    flex-wrap: wrap;
+}
+
+.event-arrow {
+    font-size: 24px;
+    color: var(--text-muted);
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    font-weight: bold;
+}
+
+.event-card.expanded .event-arrow {
+    transform: rotate(180deg);
+}
+
+.event-card-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    padding: 0 24px;
+}
+
+.event-card.expanded .event-card-body {
+    max-height: 500px;
+    padding: 0 24px 24px 24px;
+}
+
+.event-description {
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    line-height: 1.6;
+}
+
+.event-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+    background: var(--bg-secondary);
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.signup-btn {
+    width: 100%;
+    text-align: center;
+    margin-top: 8px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.hero-decoration {
+    font-size: 120px;
+    animation: float 4s ease-in-out infinite;
+    opacity: 0.8;
+}
+
+.format-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+}
+
+.format-list {
+    list-style: none;
+    padding: 0;
+}
+
+.format-list li {
+    padding: 8px 0;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+}

@@ -1,4 +1,3 @@
-{{define "gallery.html"}}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -21,7 +20,7 @@
                         <a class="nav-link" href="/">Главная</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{if eq .Active "gallery"}}active{{end}}" href="/gallery">Галерея</a>
+                        <a class="nav-link active" href="/gallery">Галерея</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/about">О нас</a>
@@ -31,7 +30,6 @@
         </div>
     </nav>
 
-    <!-- Остальной контент галереи без изменений -->
     <div class="hero-section-sm fade-up">
         <div class="container">
             <h1 class="hero-title">Галерея встреч</h1>
@@ -62,7 +60,7 @@
             {{range .Files}}
             <div class="gallery-item fade-up">
                 {{if isImage .}}
-                <img src="/static/uploads/{{.}}" alt="Фото" loading="lazy">
+                <img src="/static/uploads/{{.}}" alt="Фото с мероприятия" loading="lazy">
                 {{else}}
                 <video src="/static/uploads/{{.}}" controls></video>
                 {{end}}
@@ -91,4 +89,3 @@
     <script src="/static/js/app.js"></script>
 </body>
 </html>
-{{end}}

@@ -1,4 +1,3 @@
-{{define "about.html"}}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -24,14 +23,13 @@
                         <a class="nav-link" href="/gallery">Галерея</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{if eq .Active "about"}}active{{end}}" href="/about">О нас</a>
+                        <a class="nav-link active" href="/about">О нас</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero -->
     <div class="hero-section-sm fade-up">
         <div class="container">
             <h1 class="hero-title">О нашем клубе</h1>
@@ -40,7 +38,6 @@
     </div>
 
     <div class="container my-5">
-        <!-- О клубе -->
         <div class="row mb-5">
             <div class="col-lg-8 mx-auto text-center fade-up">
                 <h2 class="section-title text-center mb-4">Кто мы</h2>
@@ -72,7 +69,6 @@
             </div>
         </div>
 
-        <!-- Отзывы -->
         <div class="row mt-5 pt-5">
             <div class="col-12 fade-up">
                 <h2 class="section-title text-center mb-5">Что говорят участники</h2>
@@ -105,7 +101,6 @@
             {{end}}
         </div>
 
-        <!-- Форма отзыва -->
         <div class="row mt-5">
             <div class="col-lg-8 mx-auto fade-up delay-2">
                 <div class="review-form-card">
@@ -156,4 +151,3 @@
     <script src="/static/js/app.js"></script>
 </body>
 </html>
-{{end}}

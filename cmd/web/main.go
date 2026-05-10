@@ -55,8 +55,48 @@ var funcMap = template.FuncMap{
         }
         return string(runes[start:end])
     },
-    "safeHTML": func(s string) template.HTML {
-        return template.HTML(s)
+    "formatDate": func(dateStr, format string) string {
+        // Пробуем разные форматы даты
+        layouts := []string{
+            "2006-01-02 15:04",
+            "2006-01-02",
+            "02.01.2006 15:04",
+        }
+        
+        var t time.Time
+        var err error
+        
+        for _, layout := range layouts {
+            t, err = time.Parse(layout, dateStr)
+            if err == nil {
+                break
+            }
+        }
+        
+        if err != nil {
+            return dateStr
+        }
+        
+        // Месяцы на русском
+        months := []string{
+            "января", "февраля", "марта", "апреля", "мая", "июня",
+            "июля", "августа", "сентября", "октября", "ноября", "декабря",
+        }
+        
+        switch format {
+        case "day":
+            return fmt.Sprintf("%d", t.Day())
+        case "month":
+            return months[t.Month()-1]
+        case "time":
+            return t.Format("15:04")
+        case "full":
+            return fmt.Sprintf("%d %s %d", t.Day(), months[t.Month()-1], t.Year())
+        case "datetime":
+            return fmt.Sprintf("%d %s %d, %s", t.Day(), months[t.Month()-1], t.Year(), t.Format("15:04"))
+        default:
+            return dateStr
+        }
     },
 }
 
@@ -95,8 +135,8 @@ func main() {
     // Маршруты
     http.HandleFunc("/", handleHome)
     http.HandleFunc("/gallery", handleGallery)
-    http.HandleFunc("/about", handleAbout)        // Бывшие отзывы → О нас
-    http.HandleFunc("/submit-review", handleSubmitReview)  // Оставляем для формы
+    http.HandleFunc("/about", handleAbout)
+    http.HandleFunc("/submit-review", handleSubmitReview)
     http.HandleFunc("/upload", handleUpload)
 
     // Статика
@@ -126,27 +166,25 @@ func initDB() {
         content TEXT, rating INTEGER, created_at TEXT
     )`)
 
-    // Считаем мероприятия
     var eventCount int
     db.QueryRow("SELECT COUNT(*) FROM events").Scan(&eventCount)
     
     if eventCount == 0 {
         fmt.Println("📝 Добавление тестовых мероприятий...")
         db.Exec(`INSERT INTO events (title, description, event_date, location) VALUES 
-            ('Обсуждение "1984"', 'Антиутопия Оруэлла в современном контексте', '2026-05-15 18:00', 'Кафе Книжный червь'),
-            ('Вечер поэзии', 'Стихи Серебряного века', '2026-05-22 18:00', 'Библиотека им. Пушкина'),
-            ('Мастер-класс рецензий', 'Учимся писать отзывы', '2026-05-29 17:00', 'Коворкинг Страницы')`)
+            ('Обсуждение "1984"', 'Поговорим об антиутопии Джорджа Оруэлла. Актуальна ли она сегодня? Какие параллели можно провести с современным миром?', '2026-05-15 18:00', 'Кафе "Книжный червь"'),
+            ('Вечер поэзии', 'Читаем и обсуждаем стихи Ахматовой, Цветаевой, Мандельштама. Приносите любимые сборники!', '2026-05-22 18:00', 'Библиотека им. Пушкина'),
+            ('Мастер-класс рецензий', 'Учимся писать рецензии: структура, стиль, аргументация. Разбираем примеры и практикуемся.', '2026-05-29 17:00', 'Коворкинг "Страницы"')`)
     }
 
-    // Считаем отзывы
     var reviewCount int
     db.QueryRow("SELECT COUNT(*) FROM reviews").Scan(&reviewCount)
     
     if reviewCount == 0 {
         fmt.Println("📝 Добавление тестовых отзывов...")
         db.Exec(`INSERT INTO reviews (event_id, author, content, rating, created_at) VALUES 
-            (1, 'Анна', 'Прекрасная встреча! Обсуждение было глубоким и интересным.', 5, '2026-05-16 10:00'),
-            (2, 'Михаил', 'Очень душевный вечер. Стихи звучали потрясающе.', 5, '2026-05-23 11:00'),
+            (1, 'Анна', 'Прекрасная встреча! Обсуждение было глубоким и интересным. Оруэлл актуален как никогда.', 5, '2026-05-16 10:00'),
+            (2, 'Михаил', 'Очень душевный вечер. Стихи звучали потрясающе в такой атмосфере.', 5, '2026-05-23 11:00'),
             (1, 'Елена', 'Понравилась организация и атмосфера. Приду ещё!', 4, '2026-05-16 15:00')`)
     }
     
@@ -159,7 +197,7 @@ func handleHome(w http.ResponseWriter, r *http.Request) {
         return
     }
 
-    rows, err := db.Query("SELECT id, title, description, event_date, location FROM events ORDER BY event_date DESC")
+    rows, err := db.Query("SELECT id, title, description, event_date, location FROM events ORDER BY event_date ASC")
     if err != nil {
         http.Error(w, "Ошибка загрузки данных", http.StatusInternalServerError)
         return
@@ -189,7 +227,7 @@ func handleHome(w http.ResponseWriter, r *http.Request) {
         events,
     }
 
-    tmpl.ExecuteTemplate(w, "base.html", data)
+    tmpl.ExecuteTemplate(w, "index.html", data)
 }
 
 func handleGallery(w http.ResponseWriter, r *http.Request) {
@@ -221,9 +259,7 @@ func handleGallery(w http.ResponseWriter, r *http.Request) {
     tmpl.ExecuteTemplate(w, "gallery.html", data)
 }
 
-// handleAbout - страница "О нас" с отзывами
 func handleAbout(w http.ResponseWriter, r *http.Request) {
-    // Получаем отзывы
     revRows, err := db.Query(`
         SELECT r.id, r.event_id, r.author, r.content, r.rating, r.created_at 
         FROM reviews r 
@@ -246,7 +282,6 @@ func handleAbout(w http.ResponseWriter, r *http.Request) {
         reviews = []Review{}
     }
 
-    // Получаем мероприятия для формы
     evRows, err := db.Query("SELECT id, title, event_date FROM events")
     
     var events []Event
