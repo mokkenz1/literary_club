@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Книжный клуб - Отзывы</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">📚 Книжный клуб</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Главная</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/gallery">Галерея</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/reviews">Отзывы</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1>💬 Отзывы о книгах</h1>
+        <p class="lead">Что говорят участники нашего книжного клуба</p>
+        <hr>
+
+        <div class="row">
+            <div class="col-md-8">
+                <!-- Список отзывов (позже из БД) -->
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Екатерина</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">"Три товарища" - Ремарк</h6>
+                        <p class="card-text">Очень трогательная книга. Обсуждали её целых два часа!</p>
+                        <span class="badge bg-warning">⭐⭐⭐⭐⭐</span>
+                        <small class="text-muted ms-3">2 дня назад</small>
+                    </div>
+                </div>
+
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Михаил</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">"1984" - Оруэлл</h6>
+                        <p class="card-text">Актуально до сих пор. Обязательно к прочтению всем.</p>
+                        <span class="badge bg-warning">⭐⭐⭐⭐</span>
+                        <small class="text-muted ms-3">5 дней назад</small>
+                    </div>
+                </div>
+
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Ольга</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">"Мастер и Маргарита" - Булгаков</h6>
+                        <p class="card-text">Шедевр! Перечитываю каждый год.</p>
+                        <span class="badge bg-warning">⭐⭐⭐⭐⭐</span>
+                        <small class="text-muted ms-3">1 неделя назад</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <!-- ФОРМА ДОБАВЛЕНИЯ ОТЗЫВА (будет работать с Дня 5) -->
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Добавить отзыв</h5>
+                    </div>
+                    <div class="card-body">
+                        <form action="/submit-review" method="POST">
+                            <div class="mb-3">
+                                <label class="form-label">Ваше имя</label>
+                                <input type="text" class="form-control" name="username" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Название книги</label>
+                                <input type="text" class="form-control" name="book" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Отзыв</label>
+                                <textarea class="form-control" name="review" rows="3" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Оценка (1-5)</label>
+                                <select class="form-select" name="rating">
+                                    <option value="5">⭐⭐⭐⭐⭐ - Отлично</option>
+                                    <option value="4">⭐⭐⭐⭐ - Хорошо</option>
+                                    <option value="3">⭐⭐⭐ - Средне</option>
+                                    <option value="2">⭐⭐ - Не очень</option>
+                                    <option value="1">⭐ - Плохо</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-success w-100">Отправить отзыв</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
