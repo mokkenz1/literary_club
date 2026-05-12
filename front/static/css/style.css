@@ -216,7 +216,7 @@ p {
 /* Контейнер-книга */
 .book-cover {
     position: relative;
-    background-image: url('/static/images/ChatGPT Image 13 мая 2026 г., 01_01_55.png');
+    background-image: url('/static/images/books-bg.png');
     background-size: cover;
     background-position: center;
     padding: 80px 60px;
