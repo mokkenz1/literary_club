@@ -3,65 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Книжный клуб - Галерея</title>
-    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <title>{{.Title}}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="/">📚 Книжный клуб</a>
-            <div class="collapse navbar-collapse">
+            <a class="navbar-brand" href="/">📖 Книжный клуб</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="/">Главная</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/gallery">Галерея</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/reviews">Отзывы</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/gallery">Галерея</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">О нас</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="container mt-5">
-        <h1>📸 Галерея книжного клуба</h1>
-        <p class="lead">Фотографии с наших встреч и любимые книги участников</p>
-        <hr>
-
-        <div class="row">
-            <div class="col-md-3 mb-4">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <div style="font-size: 80px;">📖</div>
-                        <p class="card-text mt-2">Здесь будут фотографии</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-4">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <div style="font-size: 80px;">🏠</div>
-                        <p class="card-text mt-2">Наши встречи</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-4">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <div style="font-size: 80px;">🎉</div>
-                        <p class="card-text mt-2">Мероприятия</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-4">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <div style="font-size: 80px;">☕</div>
-                        <p class="card-text mt-2">Неформальные встречи</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="alert alert-info">
-            📸 Скоро здесь появятся реальные фото! Следите за обновлениями.
+    <div class="hero-section-sm fade-up">
+        <div class="container">
+            <h1 class="hero-title">Галерея встреч</h1>
+            <p class="hero-subtitle">Мгновения наших литературных вечеров</p>
         </div>
     </div>
+
+    <div class="container my-5">
+        <div class="upload-card fade-up delay-1">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-lg-8">
+                        <h5 class="card-title mb-2">Поделитесь фотографией</h5>
+                        <p class="text-muted mb-0">JPEG, PNG, GIF или MP4 (до 10 МБ)</p>
+                    </div>
+                    <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+                        <form action="/upload" method="POST" enctype="multipart/form-data" class="d-flex gap-2 justify-content-lg-end">
+                            <input type="file" class="form-control" name="file" accept="image/*,video/*" required>
+                            <button type="submit" class="btn btn-primary">Загрузить</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{if .Files}}
+        <div class="gallery-grid">
+            {{range .Files}}
+            <div class="gallery-item fade-up">
+                {{if isImage .}}
+                <img src="/static/uploads/{{.}}" alt="Фото с мероприятия" loading="lazy">
+                {{else}}
+                <video src="/static/uploads/{{.}}" controls></video>
+                {{end}}
+                <div class="gallery-overlay">
+                    <span>📸 С мероприятия</span>
+                </div>
+            </div>
+            {{end}}
+        </div>
+        {{else}}
+        <div class="empty-state fade-up delay-2">
+            <div class="empty-icon">🖼️</div>
+            <h3>Здесь пока тихо</h3>
+            <p class="text-muted">Загрузите первую фотографию с книжной встречи</p>
+        </div>
+        {{end}}
+    </div>
+
+    <footer>
+        <div class="container text-center">
+            <p>&copy; 2026 Книжный клуб. Читаем с душой.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/app.js"></script>
 </body>
 </html>
