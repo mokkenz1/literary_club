@@ -63,7 +63,7 @@ p {
 /* ====== Навигация ====== */
 .navbar {
     background: rgba(255, 238, 231, 0.92) !important;
-    border-bottom: 2px solid #2c1810;
+    border-bottom: none;
     padding: 14px 32px;
 }
 
@@ -197,6 +197,134 @@ p {
 .hero-cta:hover {
     background: var(--accent);
     color: var(--bg-primary);
+}
+
+/* ====== Hero секция с книжной обложкой ====== */
+.hero {
+    padding: 0;
+    position: relative;
+}
+
+.hero .container {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    z-index: 2;
+}
+
+/* Контейнер-книга */
+.book-cover {
+    position: relative;
+    background-image: url('/static/images/ChatGPT Image 13 мая 2026 г., 01_01_55.png');
+    background-size: cover;
+    background-position: center;
+    padding: 80px 60px;
+    border-radius: 0;
+    box-shadow: none;
+    border-left: none;
+    border-right: none;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+}
+
+.book-cover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(44, 24, 16, 0.7) 0%,
+        rgba(44, 24, 16, 0.3) 50%,
+        rgba(44, 24, 16, 0.5) 100%
+    );
+    border-radius: 8px;
+    z-index: 1;
+}
+
+/* Декоративные линии переплёта */
+.book-cover::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    bottom: 20px;
+    left: 30px;
+    width: 2px;
+    background: rgba(212, 181, 174, 0.3);
+    z-index: 2;
+}
+
+/* Контент поверх обложки */
+.book-content {
+    position: relative;
+    z-index: 3;
+    margin-left: 5%;
+    max-width: 480px;
+}
+
+/* Текст на обложке */
+.book-content .hero-eyebrow {
+    font-size: 0.75rem;
+    color: #c4a97d;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.book-content .hero-title {
+    font-size: 3rem;
+    color: #f5e4dd;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    font-weight: normal;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+    letter-spacing: 0.02em;
+}
+
+.book-content .hero-title em {
+    color: #d4a853;
+    font-style: italic;
+    display: block;
+    font-size: 2.4rem;
+    margin-top: 8px;
+}
+
+.book-content .hero-subtitle {
+    font-size: 1.1rem;
+    color: #d4b5ae;
+    font-style: italic;
+    max-width: 500px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Кнопка на обложке */
+.book-cta {
+    display: inline-block;
+    background: transparent;
+    border: 2px solid #d4a853;
+    color: #d4a853;
+    padding: 14px 36px;
+    font-family: Georgia, serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.book-cta:hover {
+    background: #d4a853;
+    color: #2c1810;
+    text-shadow: none;
 }
 
 /* ====== Разделители и секции ====== */
