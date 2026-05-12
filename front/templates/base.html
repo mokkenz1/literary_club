@@ -11,20 +11,22 @@
 <body>
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="/">📖 Книжный клуб</a>
+            <a class="navbar-brand" href="/" style="border: 1.5px solid var(--accent); padding: 6px 14px; color: var(--accent);">
+                Литературный клуб
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link {{if eq .Active "home"}}active{{end}}" href="/">Главная</a>
+                        <a class="nav-link nav-btn {{if eq .Active "home"}}active{{end}}" href="/">Главная</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{if eq .Active "gallery"}}active{{end}}" href="/gallery">Галерея</a>
+                        <a class="nav-link nav-btn {{if eq .Active "gallery"}}active{{end}}" href="/gallery">Галерея</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{if eq .Active "about"}}active{{end}}" href="/about">О нас</a>
+                        <a class="nav-link nav-btn {{if eq .Active "about"}}active{{end}}" href="/about">О нас</a>
                     </li>
                 </ul>
             </div>
