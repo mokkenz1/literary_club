@@ -248,13 +248,13 @@ p {
     position: relative;
     background-image: url('/static/images/books-bg.png');
     background-size: cover;
-    background-position: center bottom;
+    background-position: center center;
     padding: 80px 60px;
     border-radius: 0;
     box-shadow: none;
     border-left: none;
     border-right: none;
-    min-height: 600px;
+    min-height: clamp(480px, 55vh, 700px);
     display: flex;
     align-items: center;
 }
