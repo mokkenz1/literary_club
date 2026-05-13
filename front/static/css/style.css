@@ -84,7 +84,7 @@ p {
 /* ====== Навигация ====== */
 .navbar {
     background: rgba(255, 238, 231, 0.92) !important;
-    border-bottom: 2px solid #2c1810;
+    border-bottom: 2px solid #3d1f1a !important;
     padding: 14px 32px;
 }
 
@@ -92,19 +92,47 @@ p {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 1200px;
+    max-width: 1400px;
+    min-height: unset !important;
     margin: 0 auto;
-    padding: 0;
+    padding: 2px 20px;;
 }
 
 .navbar-brand {
-    font-family:'TT Livret', Georgia, serif;
-    font-size: 1.3rem;
+    font-family: 'TT Livret', Georgia, serif;
+    font-size: 1.6rem;
     color: var(--accent);
     text-decoration: none;
     letter-spacing: 0.04em;
     transition: all 0.3s ease;
 }
+
+.nav-btn {
+    background: transparent;
+    color: var(--accent);
+    border: none;
+    padding: 8px 16px;
+    font-family: 'TT Livret', Georgia, serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+    color: var(--accent-dark);
+    text-decoration: underline;
+    text-underline-offset: 6px;
+}
+
+/* .navbar-nav .nav-link.nav-btn:hover,
+.navbar-nav .nav-link.nav-btn.active {
+    background: var(--text-primary);
+    color: var(--bg-primary) !important;
+} */
 
 .navbar-brand:hover {
     color: var(--accent-dark);
@@ -139,26 +167,6 @@ p {
 
 .nav-link {
     text-decoration: none;
-}
-
-.nav-btn {
-    background: none;
-    color: none;
-    border: none;
-    padding: 8px 20px;
-    font-family: Georgia, serif;
-    font-size: 0.85rem;
-    letter-spacing: 0.06em;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: inline-block;
-    text-decoration: none;
-}
-
-.navbar-nav .nav-link.nav-btn:hover,
-.navbar-nav .nav-link.nav-btn.active {
-    background: var(--text-primary);
-    color: var(--bg-primary) !important;
 }
 
 /* ====== Hero секция ====== */
