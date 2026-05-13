@@ -84,7 +84,7 @@ p {
 /* ====== Навигация ====== */
 .navbar {
     background: rgba(255, 238, 231, 0.92) !important;
-    border-bottom: none;
+    border-bottom: 2px solid #2c1810;
     padding: 14px 32px;
 }
 
@@ -142,8 +142,8 @@ p {
 }
 
 .nav-btn {
-    background: var(--accent);
-    color: var(--bg-primary);
+    background: none;
+    color: none;
     border: none;
     padding: 8px 20px;
     font-family: Georgia, serif;
@@ -155,9 +155,10 @@ p {
     text-decoration: none;
 }
 
-.nav-btn:hover,
-.nav-btn.active {
+.navbar-nav .nav-link.nav-btn:hover,
+.navbar-nav .nav-link.nav-btn.active {
     background: var(--text-primary);
+    color: var(--bg-primary) !important;
 }
 
 /* ====== Hero секция ====== */
