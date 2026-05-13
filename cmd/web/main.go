@@ -98,6 +98,20 @@ var funcMap = template.FuncMap{
             return dateStr
         }
     },
+    "pluralize": func(one, two, five string, n int) string {
+        n = n % 100
+        if n >= 11 && n <= 19 {
+            return five
+        }
+        n = n % 10
+        if n == 1 {
+            return one
+        }
+        if n >= 2 && n <= 4 {
+            return two
+        }
+        return five
+    },
 }
 
 func main() {
