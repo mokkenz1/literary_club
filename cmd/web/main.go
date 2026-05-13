@@ -232,7 +232,7 @@ func handleHome(w http.ResponseWriter, r *http.Request) {
 
 func handleGallery(w http.ResponseWriter, r *http.Request) {
     rootDir := getRootDir()
-    files, _ := filepath.Glob(filepath.Join(rootDir, "front", "static", "uploads", "*"))
+    files, _ := filepath.Glob(filepath.Join(rootDir, "front", "static", "photos", "*"))
     
     var names []string
     for _, f := range files {
