@@ -38,66 +38,80 @@ type Event struct {
 // }
 
 var funcMap = template.FuncMap{
-	"isImage": func(filename string) bool {
-		ext := strings.ToLower(filepath.Ext(filename))
-		return ext == ".jpg" || ext == ".jpeg" || ext == ".png" || ext == ".gif"
-	},
-	"slice": func(s string, start, end int) string {
-		if s == "" {
-			return ""
-		}
-		runes := []rune(s)
-		if start < 0 || start >= len(runes) {
-			return ""
-		}
-		if end > len(runes) {
-			end = len(runes)
-		}
-		return string(runes[start:end])
-	},
-	"formatDate": func(dateStr, format string) string {
-		// Пробуем разные форматы даты
-		layouts := []string{
-			"2006-01-02 15:04",
-			"2006-01-02",
-			"02.01.2006 15:04",
-		}
-
-		var t time.Time
-		var err error
-
-		for _, layout := range layouts {
-			t, err = time.Parse(layout, dateStr)
-			if err == nil {
-				break
-			}
-		}
-
-		if err != nil {
-			return dateStr
-		}
-
-		// Месяцы на русском
-		months := []string{
-			"января", "февраля", "марта", "апреля", "мая", "июня",
-			"июля", "августа", "сентября", "октября", "ноября", "декабря",
-		}
-
-		switch format {
-		case "day":
-			return fmt.Sprintf("%d", t.Day())
-		case "month":
-			return months[t.Month()-1]
-		case "time":
-			return t.Format("15:04")
-		case "full":
-			return fmt.Sprintf("%d %s %d", t.Day(), months[t.Month()-1], t.Year())
-		case "datetime":
-			return fmt.Sprintf("%d %s %d, %s", t.Day(), months[t.Month()-1], t.Year(), t.Format("15:04"))
-		default:
-			return dateStr
-		}
-	},
+    "isImage": func(filename string) bool {
+        ext := strings.ToLower(filepath.Ext(filename))
+        return ext == ".jpg" || ext == ".jpeg" || ext == ".png" || ext == ".gif"
+    },
+    "slice": func(s string, start, end int) string {
+        if s == "" {
+            return ""
+        }
+        runes := []rune(s)
+        if start < 0 || start >= len(runes) {
+            return ""
+        }
+        if end > len(runes) {
+            end = len(runes)
+        }
+        return string(runes[start:end])
+    },
+    "formatDate": func(dateStr, format string) string {
+        // Пробуем разные форматы даты
+        layouts := []string{
+            "2006-01-02 15:04",
+            "2006-01-02",
+            "02.01.2006 15:04",
+        }
+        
+        var t time.Time
+        var err error
+        
+        for _, layout := range layouts {
+            t, err = time.Parse(layout, dateStr)
+            if err == nil {
+                break
+            }
+        }
+        
+        if err != nil {
+            return dateStr
+        }
+        
+        // Месяцы на русском
+        months := []string{
+            "января", "февраля", "марта", "апреля", "мая", "июня",
+            "июля", "августа", "сентября", "октября", "ноября", "декабря",
+        }
+        
+        switch format {
+        case "day":
+            return fmt.Sprintf("%d", t.Day())
+        case "month":
+            return months[t.Month()-1]
+        case "time":
+            return t.Format("15:04")
+        case "full":
+            return fmt.Sprintf("%d %s %d", t.Day(), months[t.Month()-1], t.Year())
+        case "datetime":
+            return fmt.Sprintf("%d %s %d, %s", t.Day(), months[t.Month()-1], t.Year(), t.Format("15:04"))
+        default:
+            return dateStr
+        }
+    },
+    "pluralize": func(one, two, five string, n int) string {
+        n = n % 100
+        if n >= 11 && n <= 19 {
+            return five
+        }
+        n = n % 10
+        if n == 1 {
+            return one
+        }
+        if n >= 2 && n <= 4 {
+            return two
+        }
+        return five
+    },
 }
 
 func main() {

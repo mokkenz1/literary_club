@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
+    <!-- Навигация -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="/">Преемственность</a>
@@ -30,13 +31,19 @@
         </div>
     </nav>
 
-    <div class="hero-section-sm fade-up">
+    <!-- Заголовок галереи -->
+    <div class="gallery-header">
         <div class="container">
-            <h1 class="hero-title text-center">Галерея встреч</h1>
-            <p class="hero-subtitle">Мгновения наших литературных вечеров</p>
+            <div class="gallery-header-inner">
+                <div class="gallery-header-text">
+                    <h1 class="gallery-title">Галерея встреч</h1>
+                    <p class="gallery-subtitle">Мгновения, которые хочется перелистывать снова</p>
+                </div>
+            </div>
         </div>
     </div>
 
+    <!-- Контент -->
     <div class="section gallery-section">
         <div class="container">
             {{if .Files}}
@@ -65,7 +72,7 @@
     <!-- Футер -->
     <footer>
         <div class="container text-center">
-            <p>&copy; 2026 Книжный клуб. Читаем с душой.</p>
+            <p>&copy; 2026 Преемственность. Читаем с душой.</p>
         </div>
     </footer>
 
@@ -81,13 +88,9 @@
         function openLightbox(src, type) {
             const lightbox = document.getElementById('lightbox');
             const content = document.getElementById('lightboxContent');
-            
-            if (type === 'image') {
-                content.innerHTML = `<img src="${src}" alt="Просмотр фото">`;
-            } else {
-                content.innerHTML = `<video src="${src}" controls autoplay></video>`;
-            }
-            
+            content.innerHTML = type === 'image' 
+                ? `<img src="${src}" alt="Просмотр фото">` 
+                : `<video src="${src}" controls autoplay></video>`;
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -95,24 +98,14 @@
         function closeLightbox() {
             const lightbox = document.getElementById('lightbox');
             const content = document.getElementById('lightboxContent');
-            
             lightbox.classList.remove('active');
-            
             const video = content.querySelector('video');
-            if (video) {
-                video.pause();
-                video.currentTime = 0;
-            }
-            
+            if (video) { video.pause(); video.currentTime = 0; }
             content.innerHTML = '';
             document.body.style.overflow = '';
         }
 
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeLightbox();
-            }
-        });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
     </script>
 </body>
 </html>
