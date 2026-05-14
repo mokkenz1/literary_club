@@ -176,13 +176,8 @@ p {
 }
 
 .hero .container {
-<<<<<<< HEAD
     max-width: 100%;
     margin: 0;
-=======
-    max-width: 1400px;
-    margin: 0 auto;
->>>>>>> 30946f9 (feat: add news block)
     padding: 0;
     position: relative;
     z-index: 2;
@@ -748,10 +743,11 @@ footer p {
         padding: 14px 16px;
     }
 
-<<<<<<< HEAD
     .gallery-divider {
         margin: 0 16px;
-=======
+    }
+}
+
 .gallery-section {
     padding-top: 16px;
 }
@@ -961,24 +957,149 @@ footer p {
     margin: 0;
 }
 
-/* @media (max-width: 768px) {
-    .news-card {
+/* ====== Страница О нас ====== */
+.about-page {
+    padding-top: 64px;
+}
+
+.about-header {
+    max-width: 720px;
+    margin: 0 auto 48px auto;
+}
+
+.about-main-title {
+    font-size: 3.0rem;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.about-manifesto {
+    font-size: 1.0rem;
+    color: var(--accent);
+    font-style: italic;
+    line-height: 1.8;
+    text-align: center;
+}
+
+.about-divider {
+    margin: 0 0 48px 0;
+    border-top: 2px solid var(--accent);
+    opacity: 0.4;
+}
+
+.about-body {
+    max-width: 720px;
+    margin: 0 auto 48px auto;
+    text-align: justify;
+}
+
+.about-body p {
+    margin-bottom: 16px;
+    font-size: 1.1rem;
+}
+
+.about-plans-title {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    margin-top: 32px;
+    margin-bottom: 16px;
+    font-weight: normal;
+    letter-spacing: 0.03em;
+}
+
+.about-plans {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.about-plans li {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    padding: 8px 0;
+    /* border-bottom: 1px solid rgba(212, 181, 174, 0.4); */
+    padding-left: 16px;
+    position: relative;
+}
+
+.about-plans li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+}
+
+.about-contacts {
+    max-width: 720px;
+    margin: 0 auto 48px auto;
+    text-align: center;
+}
+
+.about-contacts-title {
+    font-size: 1.8rem;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    /* border-bottom: 1px solid var(--border); */
+    text-align: center;
+}
+
+.contacts-list {
+    display: flex;
+    gap: 48px;
+    margin-bottom: 32px;
+    justify-content: center;
+}
+
+.contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.contact-name {
+    font-size: 0.95rem;
+    color: var(--text-primary);
+}
+
+.contact-phone {
+    font-size: 0.9rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-style: italic;
+}
+
+.contact-phone:hover {
+    color: var(--accent-dark);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.contact-vk {
+    display: inline-block;
+    font-size: 0.9rem;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px;
+    transition: all 0.3s ease;
+}
+
+.contact-vk:hover {
+    color: var(--accent-dark);
+    border-color: var(--accent-dark);
+}
+
+@media (max-width: 768px) {
+    .contacts-list {
         flex-direction: column;
+        gap: 24px;
     }
-
-    .news-img {
-        width: 100%;
-    }
-
-    .news-img img {
-        height: 200px;
-    }
-} */
+}
 
 @media (max-width: 768px) {
     .gallery-section {
         padding-top: 8px;
->>>>>>> 30946f9 (feat: add news block)
     }
 
     .gallery-header {
@@ -1005,8 +1126,6 @@ footer p {
     }
 }
 
-<<<<<<< HEAD
-=======
 @media (min-width: 1650px) {
     .book-cover {
         min-height: 680px;
@@ -1042,4 +1161,3 @@ footer p {
         margin-bottom: 10px;
     }
 }
->>>>>>> 30946f9 (feat: add news block)
